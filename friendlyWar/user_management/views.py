@@ -7,6 +7,7 @@ from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK
 from knox.auth import TokenAuthentication
 from knox.views import LoginView as knoxLoginView
+from knox.views import LogoutView as knoxLogoutView
 
 
 class LoginAPIView(knoxLoginView):
@@ -33,6 +34,10 @@ class LoginAPIView(knoxLoginView):
                 context=self.get_context()
             ).data
         return data
+
+
+class LogoutView(knoxLogoutView):
+    permission_classes = [IsAuthenticated]
 
 
 class CustomUserListCreateAPIView(ListCreateAPIView):
